@@ -1,6 +1,7 @@
 package jason.company;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Main {
@@ -28,13 +29,90 @@ public class Main {
     // requires, and returns an ArrayList.
     // There is a whole Java I/O section later in the course where you will get to use files, etc.
 
-
     public static void main(String[] args) {
+        Player jason = new Player("Jason", "Sword");
+        ISaveable gecko = new Monster("Ralph", "gecko", 1, 10);
 
+        // TODO: can't do this with the interface
+        // gecko.getName();
+
+        // we can do it like this though
+        // TODO: we can CAST it
+        System.out.println(((Monster) gecko).getName());
+
+        // it's difficult to determine when to declare the interface
+        // TODO: if there is no strong reason to use the class type then declare it as the interface
+        // it keeps your code more generic
+        // you can always cast the instance to the class or interface as necessary
+        // parameters and methods declared as the interface type are automatically cast from the class type for us
+
+
+
+//        System.out.println(jason.toString());
+//        System.out.println(gecko.toString());
+//
+//        jason.getDamage(gecko.attack());
+//        gecko.getDamage(jason.attack());
+//
+//        jason.getDamage(gecko.attack());
+//        gecko.getDamage(jason.attack());
+//
+//        jason.getDamage(gecko.attack());
+//        gecko.getDamage(jason.attack());
+//
+//        jason.getDamage(gecko.attack());
+//        gecko.getDamage(jason.attack());
+//
+//        jason.getDamage(gecko.attack());
+//        gecko.getDamage(jason.attack());
+//
+//        jason.getDamage(gecko.attack());
+//        gecko.getDamage(jason.attack());
+//
+//        jason.getDamage(gecko.attack());
+//        gecko.getDamage(jason.attack());
+//
+//        jason.getDamage(gecko.attack());
+//        gecko.getDamage(jason.attack());
+//
+//        jason.getDamage(gecko.attack());
+//        gecko.getDamage(jason.attack());
+//
+//        jason.getDamage(gecko.attack());
+//        gecko.getDamage(jason.attack());
+//
+//        jason.getDamage(gecko.attack());
+//        gecko.getDamage(jason.attack());
+//
+//        jason.getDamage(gecko.attack());
+//        gecko.getDamage(jason.attack());
+
+        saveData(jason);
+        getData(jason);
+        System.out.println(jason);
+
+        saveData(gecko);
+        getData(gecko);
+        System.out.println(gecko);
+
+//        System.out.println(jason.toString());
+//        System.out.println(gecko.toString());
 
 
 
     }
+
+    public static void saveData(ISaveable dataToSave) {
+        for (int i = 0; i < dataToSave.returnList().size(); i++) {
+            System.out.println(dataToSave.returnList().get(i) + " saved to storage device");
+        }
+    }
+
+    public static void getData(ISaveable dataToLoad) {
+        ArrayList<String> dataValues = readValues();
+        dataToLoad.saveList(dataValues);
+    }
+
 
     public static ArrayList<String> readValues() {
         ArrayList<String> values = new ArrayList<String>();
@@ -61,6 +139,9 @@ public class Main {
                     index++;
                     break;
             }
+//            if (index == 4) {
+//                quit = true;
+//            }
         }
         return values;
     }
